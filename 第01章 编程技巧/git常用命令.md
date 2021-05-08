@@ -238,13 +238,13 @@ build/
 
 就是你在电脑里能看到的目录，比如上文中的 `gafish.github.com` 文件夹就是一个工作区
 
-<img src="pic/image-20210422223340027.png" alt="image-20210422223340027" style="zoom: 50%;" />
+<img src="./pic/image-20210422223340027.png" alt="image-20210422223340027" style="zoom: 50%;" />
 
 ### 本地版本库（*Local Repository*）
 
 工作区有一个隐藏目录 `.git`，这个不算工作区，而是 `Git` 的版本库。
 
-<img src="pic/640.webp" alt="图片"  />
+<img src="./pic/640.webp" alt="图片"  />
 
 ### 暂存区（*stage*）
 
@@ -254,25 +254,25 @@ build/
 
 一般指的是 `Git` 服务器上所对应的仓库，本文的示例所在的`github`仓库就是一个远程版本库
 
-<img src="pic/image-20210422223544435.png" alt="image-20210422223544435" style="zoom: 50%;" />
+<img src="./pic/image-20210422223544435.png" alt="image-20210422223544435" style="zoom: 50%;" />
 
 ### 以上概念之间的关系
 
 `工作区`、`暂存区`、`本地版本库`、`远程版本库`之间几个常用的 `Git` 操作流程如下图所示：
 
-<img src="pic/image-20210422223608185.png" alt="image-20210422223608185" style="zoom: 50%;" />
+<img src="./pic/image-20210422223608185.png" alt="image-20210422223608185" style="zoom: 50%;" />
 
 ### 分支（*Branch*）
 
 分支是为了将修改记录的整个流程分开存储，让分开的分支不受其它分支的影响，所以在同一个数据库里可以同时进行多个不同的修改
 
-![图片](pic/640-1619101713780.webp)
+![图片](./pic/640-1619101713780.webp)
 
 ### 主分支（*Master*）
 
 前面提到过 `master` 是 `Git` 为我们自动创建的第一个分支，也叫主分支，其它分支开发完成后都要合并到 `master`
 
-<img src="pic/image-20210422223711937.png" alt="image-20210422223711937" style="zoom:80%;" />
+<img src="./pic/image-20210422223711937.png" alt="image-20210422223711937" style="zoom:80%;" />
 
 
 
@@ -284,7 +284,7 @@ build/
 
 `HEAD` 指向的就是当前分支的最新提交
 
-![image-20210422223735525](pic/image-20210422223735525.png)
+![image-20210422223735525](./pic/image-20210422223735525.png)
 
 > 以上概念了解的差不多，那就可以继续往下看，下面将以具体的操作类型来讲解 `Git` 的高阶用法
 
@@ -451,7 +451,7 @@ git branch -vv
 
 查看带有最后提交id、最近提交原因等信息的本地版本库分支列表
 
-<img src="pic/640-1619102727547.webp" alt="图片" style="zoom:50%;" />
+<img src="./pic/640-1619102727547.webp" alt="图片" style="zoom:50%;" />
 
 ### git merge
 
@@ -463,7 +463,7 @@ git merge --squash
 
 将待合并分支上的 `commit` 合并成一个新的 `commit` 放入当前分支，适用于待合并分支的提交记录不需要保留的情况
 
-![图片](pic/640.gif)
+![图片](./pic/640.gif)
 
 ```
 git merge --no-ff
@@ -471,7 +471,7 @@ git merge --no-ff
 
 默认情况下，`Git` 执行"`快进式合并`"（fast-farward merge），会直接将 `Master`分支指向 `Develop` 分支，使用 `--no-ff` 参数后，会执行正常合并，在 `Master`分支上生成一个新节点，保证版本演进更清晰。
 
-<img src="pic/640-1619102727680.webp" alt="图片" style="zoom: 67%;" />
+<img src="./pic/640-1619102727680.webp" alt="图片" style="zoom: 67%;" />
 
 ```
 git merge --no-edit
@@ -655,12 +655,12 @@ git log --pretty=format:"%h"
 - %b: commit信息内容
 - %n: 换行
 
-### git cherry-pick
+### git cherry-./pick
 
 > 合并分支的一条或几条提交记录到当前分支末梢
 
 ```
-git cherry-pick 170a305
+git cherry-./pick 170a305
 ```
 
 合并提交ID `170a305` 到当前分支末梢
@@ -697,7 +697,7 @@ git rebase branch_name
 
 合并分支，这跟 `merge` 很像，但还是有本质区别，看下图：
 
-![图片](pic/640-1619103098368.webp)
+<img src="./pic/640-1619103098368.webp" alt="图片" style="zoom:67%;" />
 
 合并过程中可能需要先解决冲突，然后执行 `git rebase --continue`
 
@@ -708,12 +708,12 @@ git rebase -i HEAD~~
 打开文本编辑器，将看到从 `HEAD` 到 `HEAD~~` 的提交如下
 
 ```
-pick 9a54fd4 添加commit的说明
-pick 0d4a808 添加pull的说明
+./pick 9a54fd4 添加commit的说明
+./pick 0d4a808 添加pull的说明
 # Rebase 326fc9f..0d4a808 onto d286baa
 #
 # Commands:
-#  p, pick = use commit
+#  p, ./pick = use commit
 #  r, reword = use commit, but edit the commit message
 #  e, edit = use commit, but stop for amending
 #  s, squash = use commit, but meld into previous commit
@@ -722,12 +722,10 @@ pick 0d4a808 添加pull的说明
 #
 ```
 
-将第一行的 `pick` 改成 `Commands` 中所列出来的命令，然后保存并退出，所对应的修改将会生效。如果移动提交记录的顺序，将改变历史记录中的排序。
+将第一行的 `./pick` 改成 `Commands` 中所列出来的命令，然后保存并退出，所对应的修改将会生效。如果移动提交记录的顺序，将改变历史记录中的排序。
 
 ### git revert
 
-> “
->
 > 撤销某次操作，此次操作之前和之后的 `commit` 和 `history` 都会保留，并且把这次撤销作为一次最新的提交
 
 ```
@@ -750,11 +748,9 @@ git revert -n HEAD
 
 ### git diff
 
-> “
->
 > 查看工作区、暂存区、本地版本库之间的文件差异，用一张图来解释
 
-![图片](pic/640-1619103098385.webp)
+![图片](./pic/640-1619103098385.webp)
 
 ```
 git diff --stat
@@ -769,7 +765,7 @@ git diff --stat
 
 ### git reflog
 
-`reflog` 可以查看所有分支的所有操作记录（包括commit和reset的操作、已经被删除的commit记录，跟 `git log` 的区别在于它不能查看已经删除了的commit记录![图片](pic/640-1619103098406.webp)
+`reflog` 可以查看所有分支的所有操作记录（包括commit和reset的操作、已经被删除的commit记录，跟 `git log` 的区别在于它不能查看已经删除了的commit记录<img src="./pic/640-1619103098406.webp" alt="图片" style="zoom:67%;" />
 
 ## 远程版本库连接
 
@@ -777,8 +773,6 @@ git diff --stat
 
 ### git init
 
-> “
->
 > 在本地目录内部会生成.git文件夹
 
 ### git remote
@@ -797,8 +791,6 @@ git remote add origin https://github.com/gafish/gafish.github.com.git
 
 ### git fetch
 
-> “
->
 > 将远程版本库的更新取回到本地版本库
 
 ```
@@ -811,8 +803,6 @@ git fetch origin daily/0.0.1
 
 ### git blame
 
-> “
->
 > 查看文件每行代码块的历史信息
 
 ```
@@ -823,8 +813,6 @@ git blame -L 1,10 demo.html
 
 ### git bisect
 
-> “
->
 > 二分查找历史记录，排查BUG
 
 ```
@@ -855,8 +843,6 @@ git bisect reset
 
 ### git submodule
 
-> “
->
 > 通过 Git 子模块可以跟踪外部版本库，它允许在某一版本库中再存储另一版本库，并且能够保持2个版本库完全独立
 
 ```
@@ -873,14 +859,10 @@ git submodule update demo
 
 ### git gc
 
-> “
->
 > 运行Git的垃圾回收功能，清理冗余的历史快照
 
 ### git archive
 
-> “
->
 > 将加了tag的某个版本打包提取
 
 ```
