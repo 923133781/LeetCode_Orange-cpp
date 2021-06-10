@@ -763,6 +763,16 @@ git diff --stat
  1 file changed, 1 deletion(-)
 ```
 
+
+
+```
+
+```
+
+
+
+
+
 ### git reflog
 
 `reflog` 可以查看所有分支的所有操作记录（包括commit和reset的操作、已经被删除的commit记录，跟 `git log` 的区别在于它不能查看已经删除了的commit记录<img src="./pic/640-1619103098406.webp" alt="图片" style="zoom:67%;" />
